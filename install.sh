@@ -1,12 +1,13 @@
-tmux_dir="/home/${USER}/.tmux-alok"
-tmux_link="/home/${USER}/.tmux.conf.alok"
+tmux_dir="${HOME}/.tmux-alok"
+tmux_link="${HOME}/.tmux.conf.alok"
+
 git clone https://github.com/Xieyt/tmux-i3wm "${tmux_dir}"
 
 if [[ -d "$tmux_dir" ]]; then
     ln -sfn "$tmux_dir/.tmux.conf" "$tmux_link"
 fi
 
-new_alias="alias xtmux='tmux -f ~/.tmux.conf.alok -S /tmp/tmux-alok/default '"
+new_alias="alias xtmux='tmux -f /${HOME}/.tmux.conf.alok -S /tmp/tmux-alok/default '"
 
 if [ -n "$BASH_VERSION" ]; then
     if ! grep -qF "$new_alias" ~/.bashrc; then
