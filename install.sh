@@ -1,3 +1,4 @@
+apt update && apt install -y git tmux
 tmux_dir="${HOME}/.tmux-alok"
 tmux_link="${HOME}/.tmux.conf.alok"
 
