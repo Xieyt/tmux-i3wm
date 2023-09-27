@@ -1,6 +1,11 @@
 apt update && apt install -y git tmux
+
 tmux_dir="${HOME}/.tmux-alok"
 tmux_link="${HOME}/.tmux.conf.alok"
+
+if [[ -d "$tmux_dir" ]]; then
+    rm -r "$tmux_dir"
+fi
 
 git clone https://github.com/Xieyt/tmux-i3wm "${tmux_dir}"
 
