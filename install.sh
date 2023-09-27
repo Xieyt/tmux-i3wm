@@ -13,6 +13,7 @@ if [ -n "$BASH_VERSION" ]; then
     if ! grep -qF "$new_alias" ~/.bashrc; then
     # Append the alias to the Bash configuration file (e.g., ~/.bashrc)
         echo "$new_alias" >> ~/.bashrc
+        source ~/.bashrc
     fi
 fi
 
@@ -21,5 +22,6 @@ if [ -n "$ZSH_VERSION" ]; then
     if ! grep -qF "$new_alias" ~/.zshrc; then
     # Append the alias to the Zsh configuration file (e.g., ~/.zshrc)
         echo "$new_alias" >> ~/.zshrc
+        source ~/.zshrc
     fi
 fi
