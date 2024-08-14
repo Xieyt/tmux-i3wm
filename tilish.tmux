@@ -2,7 +2,7 @@
 # vim: foldmethod=marker
 
 # Project: tmux-tilish
-# Author:  Jabir Ali Ouassou <jabirali@switzerlandmail.ch>
+# Author:  Jabir Ali Ouassou <jabir.ali.ouassou@hvl.no>
 # Licence: MIT licence
 #
 # This file contains the `tmux` plugin `tilish`, which implements keybindings
@@ -15,7 +15,7 @@
 # shellcheck disable=SC2250
 
 # Check input parameters {{{
-	# Whether we need to use legacy workarounds (required before tmux 2.7).
+	# Whether we need to use legacy workarounds (required before Tmux 2.7).
 	legacy="$(tmux -V | grep -E 'tmux (1\.|2\.[0-6])')"
 
 	# Read user options.
@@ -166,6 +166,9 @@ else
 	tmux $bind "${mod}r" run-shell 'tmux select-layout'\\\; send escape
 fi
 
+# Switch pane via Alt + o. (Mirrors Tmux `Ctrl-b o` and Emacs `Ctrl-x o`.)
+tmux $bind "${mod}o" select-pane -t :.+1
+
 # Switch to pane via Alt + hjkl.
 tmux $bind "${mod}${h}" select-pane -L
 tmux $bind "${mod}${j}" select-pane -D
@@ -247,10 +250,10 @@ fi
 if [ "${navigate:-}" = "on" ]
 then
 	# If `@tilish-navigate` is nonzero, integrate Alt + hjkl with `tmux-navigate`.
-	tmux set -g '@navigate-left'  '-n M-h'
-	tmux set -g '@navigate-down'  '-n M-j'
-	tmux set -g '@navigate-up'    '-n M-k'
-	tmux set -g '@navigate-right' '-n M-l'
+	tmux set -g '@navigate-left'  "-n M-$h"
+	tmux set -g '@navigate-down'  "-n M-$j"
+	tmux set -g '@navigate-up'    "-n M-$k"
+	tmux set -g '@navigate-right' "-n M-$l"
 elif [ "${navigator:-}" = "on" ]
 then
 	# If `@tilish-navigator` is nonzero, integrate Alt + hjkl with `vim-tmux-navigator`.
